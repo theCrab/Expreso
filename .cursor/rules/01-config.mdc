@@ -1,0 +1,9 @@
+# Configuration & Constants Rules
+
+- **Path**: `src/config/`, `src/constants/`
+- **TDD Task Flow**:
+  1. **Test**: Write a unit test verifying environment validation or constant lookup.
+  2. **Implementation**: Implement `http_codes.ts`, `redis.ts`, and environment loaders.
+- **Rules**:
+  - `HttpCodes` must be frozen using `as const` and include standard REST codes (200, 201, 400, 401, 403, 404, 409, 500).
+  - Redis client must be initialized cleanly with environment fallbacks.
