@@ -1,0 +1,13 @@
+# User Module & Two-Channel OTP Signup Rules
+
+- **Path**: `src/modules/users/`, `tests/`
+- **TDD Task Flow**:
+  - **Step 1: Initiation**
+    1. *Test*: Write integration test expecting `POST /api/users/signup/initiate` to check Redis, generate OTPs, trigger Twilio/SendGrid concurrently, and return 200.
+    2. *Implementation*: Zod validation schema, Redis session storage with 5-minute TTL (`EX 300`), Twilio SMS service, and SendGrid email service.
+  - **Step 2: Verification & Persistence**
+    1. *Test*: Write integration test expecting `POST /api/users/signup/verify` to validate both OTPs, encrypt email/phone via AES-256-GCM, create HMAC hashes for duplicate protection, persist to Postgres, and flush Redis.
+    2. *Implementation*: Verify session in Redis, check OTP equality, encrypt fields, store user entity, and clean up Redis.
+  - **Step 3: Identity Lookup & Lockout**
+    1. *Test*: Write integration test expecting lookups by phone or email to return the identity or 404, and return 403 `FORBIDDEN` if `is_active` is false.
+    2. *Implementation*: Implement `findByIdentity` with lockout checks and error bubbling.
