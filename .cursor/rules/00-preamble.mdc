@@ -1,1 +1,6 @@
+# General Development & TDD Rules
 
+- **Mandatory TDD Workflow**: For every feature, bug fix, or refactor, you MUST write or update the test file first (Red phase) and ensure it fails before writing any implementation code (Green phase).
+- **Filename Convention**: Every file in `src/` and `tests/` MUST strictly use `snake_case.ts` (e.g., `user_service.ts`, `user_routes.test.ts`). CamelCase or kebab-case filenames are forbidden.
+- **Strict Typing**: Never use `any`. Explicitly type all function return types, parameters, and interfaces. Enable `noImplicitAny`.
+- **Error Bubbling**: Never swallow errors inside `catch` blocks. Always throw custom `ApiError` instances upward to be handled by the global error middleware.
