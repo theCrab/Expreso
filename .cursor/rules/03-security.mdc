@@ -1,0 +1,8 @@
+# Utilities, Encryption & Blind Indexing Rules
+
+- **Path**: `src/utils/`
+- **TDD Task Flow**:
+  1. **Test**: Write unit tests for `phone_normalizer.ts` (ensuring E.164 compliance like `+15550192834`) and `encryption.ts` (ensuring AES-256-GCM roundtrip encryption/decryption and deterministic HMAC-SHA256 hashing for blind indexes).
+  2. **Implementation**:
+     - Phone normalizer strips non-digits and validates the leading `+`.
+     - Encryption service implements `aes-256-gcm` with random IVs and auth tags, plus HMAC-SHA256 hashing using a secure salt for duplicate checks and lookups.
