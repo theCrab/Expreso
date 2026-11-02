@@ -1,0 +1,9 @@
+# Errors, Global Error Bubbling & Validation Rules
+
+- **Path**: `src/errors/`, `src/middlewares/`
+- **TDD Task Flow**:
+  1. **Test**: Write unit/integration tests asserting that unhandled errors, validation failures, and `ApiError` instances bubble up with the correct status code and JSON error envelope.
+  2. **Implementation**: 
+     - `ApiError`: Extends `Error`, accepts `statusCode`, `i18nKey`, optional message and details.
+     - `error_middleware.ts`: Global Express catch-all formatting `ApiError` responses and logging unhandled system errors.
+     - `validate_middleware.ts`: Parses incoming request `body`, `query`, and `params` against Zod schemas asynchronously, passing any `ZodError` as an `ApiError(400, 'error.validation', ...)` to `next()`.
