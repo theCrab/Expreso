@@ -30,3 +30,18 @@ npx lint-staged
 npm run typecheck
 npm test
 ```
+
+### Quickstart Commands
+With your `Makefile` and `docker-compose.yml` in place, you can execute the following workflow directly from your terminal:
+```bash
+// Spin up your database and cache:
+make up
+
+// Run typechecks, linter, and TDD tests:
+make typecheck
+make lint
+make test
+
+// Tear down containers when done:
+make down
+```
